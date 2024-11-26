@@ -173,15 +173,7 @@ export default function Hero() {
                                     /an agentic system/
                                 </div>
                                 <div className="flex gap-4">
-                                    <Dialog>
-                                        <DialogTrigger asChild>
-                                            <button className="bg-black text-white px-8 py-3 hover:bg-red-500 transition-colors flex items-center gap-2 group">
-                                                JOIN THE WAITLIST
-                                                <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-                                            </button>
-                                        </DialogTrigger>
-                                        <Waitlist />
-                                    </Dialog>
+                                    <Waitlist />
                                 </div>
                             </motion.div>
 

@@ -53,14 +53,7 @@ export const Navbar = () => {
                         </Link>
                     ))}
 
-                    <Dialog>
-                        <DialogTrigger asChild>
-                            <button className="text-black px-4 py-1 hover:bg-black hover:text-white transition-colors flex items-center gap-2 group">
-                                JOIN THE WAITLIST
-                            </button>
-                        </DialogTrigger>
-                        <Waitlist />
-                    </Dialog>
+                    <Waitlist isNav={true} />
                 </nav>
 
                 {/* Right border markings */}
@@ -79,7 +72,7 @@ export const Navbar = () => {
         border-b border-neutral-200 
         font-mono text-xs tracking-[0.2em]
       `}>
-                {["SOLUTIONS", "FEATURES", "PROCESS", "PRICING", "CONTACT"].map((item, index) => (
+                {[""].map((item, index) => (
                     <Link
                         key={item}
                         href={`#${item.toLowerCase()}`}
@@ -92,6 +85,7 @@ export const Navbar = () => {
                         <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                     </Link>
                 ))}
+                <Waitlist isNav={true} />
             </nav>
 
             {/* Bottom border with technical markings */}
