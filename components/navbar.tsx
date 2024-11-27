@@ -3,8 +3,6 @@
 import { ChevronRight, CircleDot, Menu } from 'lucide-react';
 import Link from "next/link";
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './ui/dialog';
-import { motion } from 'framer-motion';
 import { Waitlist } from './waitlist';
 
 export const Navbar = () => {
@@ -24,12 +22,12 @@ export const Navbar = () => {
                 </div>
 
                 {/* Logo section */}
-                <div className="flex items-center gap-8">
+                <Link href={"/"} className="flex items-center gap-8">
                     <div className="text-xl font-mono tracking-[0.2em] flex items-center gap-2">
                         <CircleDot className="text-red-500" size={16} />
-                        Va
+                        AR
                     </div>
-                </div>
+                </Link>
 
                 <button
                     className="md:hidden"

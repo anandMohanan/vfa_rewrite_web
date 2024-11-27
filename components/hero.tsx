@@ -3,9 +3,10 @@
 import { motion } from "framer-motion";
 import { ChevronRight, Circle } from 'lucide-react';
 import { useState } from "react";
-import { Dialog, DialogTrigger } from "./ui/dialog";
 import { Waitlist } from "./waitlist";
 import Head from 'next/head';
+import TechIcons from "./tech-icons";
+import Link from "next/link";
 
 const generateRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -15,6 +16,8 @@ const generateRandomColor = () => {
     }
     return color;
 };
+
+
 
 export default function Hero() {
     const [hoverColor, setHoverColor] = useState(
@@ -61,10 +64,10 @@ export default function Hero() {
                 {/* Technical Labels */}
                 <div className="absolute left-8 top-40 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400" aria-hidden="true">
                     <Circle size={4} className="text-red-500" />
-                    AGENT NEURON
+                    EFFICIENCY AMPLIFIED
                 </div>
                 <div className="absolute right-8 top-40 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400" aria-hidden="true">
-                    EFFICIENCY: AMPLIFIED
+                    HERO.TSX
                     <Circle size={4} className="text-red-500" />
                 </div>
 
@@ -73,7 +76,10 @@ export default function Hero() {
                         {/* Header Section */}
                         <header className="flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-500 mb-12">
                             <span className="text-red-500" aria-hidden="true">*</span>
-                            <span>INTELLIGENT + OPS</span>
+                            <span>
+                                SIMPLIFY AGENTIC APPLICATION DEVELOPMENT
+
+                            </span>
                             <span className="text-red-500" aria-hidden="true">*</span>
                         </header>
 
@@ -163,8 +169,8 @@ export default function Hero() {
                                     />
                                 </svg>
 
-                                <h1 className="text-5xl md:text-8xl font-bold mb-8 leading-none tracking-tighter">
-                                    <br />AUTOMATE
+                                <h1 className="text-5xl md:text-2xl font-bold mb-8 leading-none tracking-tighter">
+                                    <br />Focus on Your Business Logic, Let Us Handle the Complexity
                                 </h1>
                                 <p className="md:text-xl text-lg text-neutral-600 mb-8 max-w-xl">
                                     Create custom API <span className="font-bold">AI</span> agents that seamlessly integrate with your existing systems.
@@ -173,7 +179,11 @@ export default function Hero() {
                                     /an agentic system/
                                 </div>
                                 <div className="flex gap-4">
-                                    <Waitlist />
+                                    <Link href="#contact" className={'transition-colors flex items-center gap-2 group bg-black text-white px-8 py-3 hover:bg-red-500'}>
+                                        JOIN THE WAITLIST
+                                        <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+
+                                    </Link>
                                 </div>
                             </motion.div>
 
@@ -184,16 +194,35 @@ export default function Hero() {
                                 className="relative"
                             >
                                 {/* Technical Imagery */}
-                                <div className="aspect-square bg-black relative overflow-hidden" aria-hidden="true">
-                                    <div className="absolute inset-0 opacity-20">
+                                <div className="aspect-square bg-black relative overflow-hidden group">
+                                    {/* Animated Circuit Pattern */}
+                                    <div className="absolute inset-0">
                                         <svg className="w-full h-full" viewBox="0 0 100 100">
-                                            <pattern id="neural" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                <circle cx="10" cy="10" r="1" fill="white" />
-                                                <line x1="10" y1="10" x2="20" y2="20" stroke="white" strokeWidth="0.5" />
+                                            <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                                                <path
+                                                    d="M 10 0 L 10 10 M 10 10 L 20 10"
+                                                    stroke="rgba(59, 130, 246, 0.2)"
+                                                    strokeWidth="0.5"
+                                                    fill="none"
+                                                />
+                                                <circle cx="10" cy="10" r="1" fill="rgba(59, 130, 246, 0.3)" />
                                             </pattern>
-                                            <rect x="0" y="0" width="100" height="100" fill="url(#neural)" />
+                                            <rect x="0" y="0" width="100" height="100" fill="url(#circuit)" />
                                         </svg>
                                     </div>
+                                    <div className="absolute inset-0">
+                                        <motion.div
+                                            animate={{
+                                                background: [
+                                                    "radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
+                                                    "radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
+                                                ],
+                                            }}
+                                            transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
+                                            className="w-full h-full"
+                                        />
+                                    </div>
+                                    <TechIcons />
                                     <div className="absolute bottom-0 right-0 p-4 text-xs tracking-[0.2em] text-red-500">
                                         HUMAN / EXPRESSION / INTEGRATION
                                     </div>

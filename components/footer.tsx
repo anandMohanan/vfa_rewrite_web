@@ -21,7 +21,7 @@ export const FooterSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div className="flex flex-col gap-8">
+                    <div className="flex flex-col gap-8 items-center justify-center">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -31,10 +31,6 @@ export const FooterSection = () => {
                                 VAUTOMATE
                             </h3>
                         </motion.div>
-                        <button className="bg-black text-white px-8 py-3 hover:bg-red-500 transition-colors flex items-center gap-2 group">
-                            TALK WITH US
-                            <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                        </button>
                     </div>
 
                     <div className="flex flex-col gap-6">
@@ -49,7 +45,7 @@ export const FooterSection = () => {
                             <li className="flex items-start">
                                 <span className="text-red-500 mr-2">&#9642;</span>
                                 <span className="opacity-60">
-                                    Rte de Chavannes 13<br />1007, Switzerland
+                                    Rte de Chavannes 13, 1007, Switzerland
                                 </span>
                             </li>
                             <li className="flex items-start">

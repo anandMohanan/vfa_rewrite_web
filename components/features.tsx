@@ -26,7 +26,7 @@ const ChatBubble = () => (
 
 export const Features = () => {
     return (
-        <section id="solutions" className="py-36 bg-[#f5f5f5] text-white relative overflow-hidden ">
+        <section id="features" className="py-36 bg-[#f5f5f5] text-white relative overflow-hidden ">
             <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03] pointer-events-none ">
                 {[...Array(1600)].map((_, i) => (
                     <div key={i} className="border-[0.5px] border-black" />
