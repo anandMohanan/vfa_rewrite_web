@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Circle, Cpu, Shield, Zap, Network, Brain } from "lucide-react";
+import { Circle, Cpu, Shield, Zap, Network, Brain, Sparkles } from "lucide-react";
 
 const features = [
     {
@@ -33,25 +33,24 @@ const features = [
         title: "Secure and Reliable",
         description: "Built with security and reliability in mind to ensure your data and operations are safe.",
         techSpec: "SECURITY_LEVEL: QUANTUM"
+    },
+    {
+
+        icon: <Sparkles className="w-8 h-8" />,
+        title: "100+ Ready-to-Use Agents",
+        description: "No need to understand or implement APIs. Just configure and go.",
+        techSpec: "AGENT_COUNT: 100+"
     }
 ];
 
-export default function KeyFeatures() {
+export function KeyFeatureComponent() {
     return (
-        <section className="py-24 bg-black text-white relative overflow-hidden">
+        <section className="py-24 bg-[#f5f5f5] text-white relative overflow-hidden">
             {/* Animated Background Grid */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0 grid grid-cols-[repeat(20,1fr)] grid-rows-[repeat(20,1fr)]">
-                    {[...Array(400)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0.1 }}
-                            animate={{ opacity: Math.random() }}
-                            transition={{ duration: 2, repeat: 1 }}
-                            className="border-[0.5px] border-white"
-                        />
-                    ))}
-                </div>
+            <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03]">
+                {[...Array(1600)].map((_, i) => (
+                    <div key={i} className="border-[0.5px] border-black" />
+                ))}
             </div>
 
             {/* Technical Labels */}
@@ -71,11 +70,11 @@ export default function KeyFeatures() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl font-bold tracking-tight">
+                    <h2 className="text-4xl font-bold tracking-tight text-black">
                         Core System Features
                     </h2>
-                    <p className="text-neutral-400 mt-4 max-w-2xl mx-auto">
-                        Advanced capabilities engineered for the next generation of development
+                    <p className="text-neutral-600 mt-4 max-w-2xl mx-auto">
+                        Stop spending weeks perfecting LLM tool calls. Our plug-and-play agents integrate with over 100+ SaaS tools in just 30 minutes, letting you focus on what matters most - your core business logic.
                     </p>
                 </motion.div>
 
@@ -86,20 +85,20 @@ export default function KeyFeatures() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: index * 0.1 }}
-                            className="relative bg-neutral-900 p-6 hover:bg-neutral-800 transition-colors"
+                            className="relative bg-white p-6 hover:bg-neutral-200 transition-colors group"
                         >
                             <div className="absolute inset-0 border border-neutral-800 opacity-50" />
                             <div className="relative">
                                 <div className="text-red-500 mb-4 transition-transform">
                                     {feature.icon}
                                 </div>
-                                <h3 className="text-lg font-semibold mb-2">
+                                <h3 className="text-lg font-semibold mb-2 text-black">
                                     {feature.title}
                                 </h3>
-                                <p className="text-neutral-400 text-sm mb-4">
+                                <p className="text-neutral-600 text-sm mb-4">
                                     {feature.description}
                                 </p>
-                                <div className="text-[10px] tracking-[0.2em] text-neutral-500 font-mono">
+                                <div className="text-[10px] tracking-[0.2em] text-neutral-500 font-mono group-hover:text-red-500 transition-colors">
                                     {feature.techSpec}
                                 </div>
                             </div>

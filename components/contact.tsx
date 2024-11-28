@@ -16,12 +16,19 @@ export default function Contact() {
     };
 
     return (
-        <section id="contact" className="py-24 bg-neutral-100 relative overflow-hidden">
-            {/* Technical Grid Background */}
-            <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03]">
-                {[...Array(1600)].map((_, i) => (
-                    <div key={i} className="border-[0.5px] border-black" />
-                ))}
+        <section id="contact" className="py-24 bg-black relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0 grid grid-cols-[repeat(20,1fr)] grid-rows-[repeat(20,1fr)]">
+                    {[...Array(400)].map((_, i) => (
+                        <motion.div
+                            key={i}
+                            initial={{ opacity: 0.1 }}
+                            animate={{ opacity: Math.random() }}
+                            transition={{ duration: 2, repeat: 1 }}
+                            className="border-[0.5px] border-white"
+                        />
+                    ))}
+                </div>
             </div>
 
             {/* Technical Labels */}
@@ -52,10 +59,10 @@ export default function Contact() {
                                 BETA_ACCESS::AVAILABLE
                             </span>
                         </motion.div>
-                        <h2 className="text-4xl font-bold mb-4 tracking-tight">
+                        <h2 className="text-4xl font-bold mb-4 tracking-tight text-white">
                             Join the Early Release
                         </h2>
-                        <p className="text-neutral-600">
+                        <p className="text-neutral-200">
                             Be among the first to experience the power of AgentRelay and shape the future of development.
                         </p>
                     </div>
@@ -95,7 +102,7 @@ export default function Contact() {
                         />
                         <button
                             type="submit"
-                            className="w-full md:w-auto bg-black text-white px-8 py-4 hover:bg-red-500 transition-colors flex items-center gap-2 justify-center"
+                            className="w-full md:w-auto bg-white text-black px-8 py-4 hover:bg-red-500 transition-colors flex items-center gap-2 justify-center"
                         >
                             <span>GET EARLY ACCESS</span>
                             <Send className="w-4 h-4" />

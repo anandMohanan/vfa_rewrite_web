@@ -4,6 +4,7 @@ import { ChevronRight, CircleDot, Menu } from 'lucide-react';
 import Link from "next/link";
 import { useState } from "react";
 import { Waitlist } from './waitlist';
+import { cx } from 'class-variance-authority';
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,7 +52,9 @@ export const Navbar = () => {
                         </Link>
                     ))}
 
-                    <Waitlist isNav={true} />
+                <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}>
+                    JOIN THE WAITLIST
+                </Link>
                 </nav>
 
                 {/* Right border markings */}
@@ -83,7 +86,9 @@ export const Navbar = () => {
                         <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                     </Link>
                 ))}
-                <Waitlist isNav={true} />
+                <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}>
+                    JOIN THE WAITLIST
+                </Link>
             </nav>
 
             {/* Bottom border with technical markings */}

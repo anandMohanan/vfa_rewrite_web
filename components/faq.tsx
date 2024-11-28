@@ -29,7 +29,7 @@ const faqs = [
 
 export default function FAQ() {
     return (
-        <section className="py-24 bg-black relative overflow-hidden" id="faq">
+        <section className="py-24 bg-[#f5f5f5] relative overflow-hidden" id="faq">
             {/* Technical Grid Background */}
             <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03]">
                 {[...Array(1600)].map((_, i) => (
@@ -64,7 +64,7 @@ export default function FAQ() {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl font-bold tracking-tight text-white">
+                    <h2 className="text-4xl font-bold tracking-tight text-black">
                         Frequently Asked Questions
                     </h2>
                     <p className="text-neutral-600 mt-4 max-w-2xl mx-auto">

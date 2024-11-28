@@ -170,10 +170,10 @@ export default function Hero() {
                                 </svg>
 
                                 <h1 className="text-5xl md:text-2xl font-bold mb-8 leading-none tracking-tighter">
-                                    <br />Focus on Your Business Logic, Let Us Handle the Complexity
+                                    <br />Your Gateway to Intelligent API Agents
                                 </h1>
                                 <p className="md:text-xl text-lg text-neutral-600 mb-8 max-w-xl">
-                                    Create custom API <span className="font-bold">AI</span> agents that seamlessly integrate with your existing systems.
+                                Streamline your agentic applications with our plug-and-play agents. Integrate 100+ SaaS tools in minutes.
                                 </p>
                                 <div className="text-sm text-neutral-400 mb-8 font-mono" aria-label="Tagline">
                                     /an agentic system/
@@ -182,7 +182,6 @@ export default function Hero() {
                                     <Link href="#contact" className={'transition-colors flex items-center gap-2 group bg-black text-white px-8 py-3 hover:bg-red-500'}>
                                         JOIN THE WAITLIST
                                         <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-
                                     </Link>
                                 </div>
                             </motion.div>
