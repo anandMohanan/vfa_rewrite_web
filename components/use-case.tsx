@@ -129,7 +129,7 @@ export function UseCasesSection() {
     }, [api]);
 
     return (
-        <section className="py-24 bg-black relative overflow-hidden">
+        <section className="py-24 bg-black relative overflow-hidden" id="usecases">
             <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0 grid grid-cols-[repeat(20,1fr)] grid-rows-[repeat(20,1fr)]">
                     {[...Array(400)].map((_, i) => (

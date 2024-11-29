@@ -47,7 +47,7 @@ export default function Hero() {
             </Head>
             <section className="lg:h-screen pt-32 pb-24 relative bg-[#f5f5f5]" aria-label="Hero section">
                 {/* Technical Grid Background */}
-                <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03] pointer-events-none" aria-hidden="true">
+                <div  className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03] pointer-events-none" aria-hidden="true">
                     {[...Array(1600)].map((_, i) => (
                         <div key={i} className="border-[0.5px] border-black" />
                     ))}
