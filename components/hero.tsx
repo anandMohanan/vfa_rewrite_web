@@ -47,7 +47,7 @@ export default function Hero() {
             </Head>
             <section className="lg:h-screen pt-32 pb-24 relative bg-[#f5f5f5]" aria-label="Hero section">
                 {/* Technical Grid Background */}
-                <div  className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03] pointer-events-none" aria-hidden="true">
+                <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03] pointer-events-none" aria-hidden="true">
                     {[...Array(1600)].map((_, i) => (
                         <div key={i} className="border-[0.5px] border-black" />
                     ))}
@@ -86,10 +86,7 @@ export default function Hero() {
                         </header>
 
                         <div className="grid lg:grid-cols-2 gap-16">
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.6 }}
+                            <div
                             >
                                 <svg aria-hidden="true" className="" >
                                     <rect
@@ -186,7 +183,7 @@ export default function Hero() {
                                         <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                     </Link>
                                 </div>
-                            </motion.div>
+                            </div>
 
                             <motion.div
                                 initial={{ opacity: 0 }}

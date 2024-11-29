@@ -186,6 +186,7 @@ export function UseCasesSection() {
                             className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-red-500' : 'bg-neutral-700'}`}
                             animate={{ scale: index === currentIndex ? 1.2 : 1 }}
                             onClick={() => api?.scrollTo(index)}
+                            aria-label={`Scroll to ${index + 1} use case`}
                         />
                     ))}
                 </div>
