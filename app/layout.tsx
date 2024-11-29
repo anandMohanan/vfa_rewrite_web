@@ -4,6 +4,7 @@ import { Space_Grotesk } from "next/font/google";
 import { Navbar } from "@/components/navbar";
 import { FooterSection } from "@/components/footer";
 import "./globals.css";
+import { PosthogProvider } from "@/provider/posthog";
 
 const geistSans = localFont({
     src: "./fonts/GeistVF.woff",
@@ -65,6 +66,7 @@ export default function RootLayout({
                 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
                 <meta name="theme-color" content="#f5f5f5" />
             </head>
+            <PosthogProvider>
             <body
                 className={`${spaceGrotesk.className} ${geistSans.variable} ${geistMono.variable} antialiased bg-[#f5f5f5]`}
             >
@@ -77,6 +79,7 @@ export default function RootLayout({
                 </main>
                 <FooterSection />
             </body>
+            </PosthogProvider>
         </html>
     );
 }

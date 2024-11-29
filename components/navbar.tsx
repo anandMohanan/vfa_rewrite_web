@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Waitlist } from './waitlist';
 import { cx } from 'class-variance-authority';
+import posthog from 'posthog-js';
 
 export const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -49,11 +50,16 @@ export const Navbar = () => {
                                 {index >= 0 && <span className="text-red-500 mr-2">/</span>}
                                 {item}
                             </span>
-                        <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                            <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                         </Link>
                     ))}
 
-                    <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}>
+                    <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}
+
+                onClick={() => {
+                    posthog.capture("clicked nav join waitlist")
+                }}
+                    >
                         JOIN THE WAITLIST
                     </Link>
                 </nav>
@@ -87,7 +93,11 @@ export const Navbar = () => {
                         <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                     </Link>
                 ))}
-                <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}>
+                <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')} 
+                onClick={() => {
+                    posthog.capture("clicked nav join waitlist")
+                }}
+                >
                     JOIN THE WAITLIST
                 </Link>
             </nav>

@@ -179,7 +179,7 @@ export function UseCasesSection() {
                     <CarouselPrevious className="bg-black border-red-500 text-red-500 hover:bg-red-500 hover:text-white hidden md:flex" />
                     <CarouselNext className="bg-black border-red-500 text-red-500 hover:bg-red-500 hover:text-white hidden md:flex" />
                 </Carousel>
-                <div className="flex justify-center gap-2 mt-8 md:hidden">
+                <div className="flex justify-center gap-2 mt-8 ">
                     {useCases.map((_, index) => (
                         <motion.button
                             key={index}
