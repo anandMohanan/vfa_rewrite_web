@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import {
     Carousel,
+    type CarouselApi,
     CarouselContent,
     CarouselItem,
     CarouselNext,
@@ -10,6 +11,8 @@ import {
 } from "./ui/carousel";
 import { TechLabel } from './ui/tech-label';
 import { GitPullRequest, MessageSquare, Check, Ticket, ListTodo, CheckSquare, MessageCircle, Reply, ThumbsUp, LucideIcon } from 'lucide-react';
+import { CarouselControls } from './carousel-controls';
+import { useEffect, useState } from 'react';
 
 
 const useCases = [
@@ -110,6 +113,21 @@ function UseCaseStep({ icon: Icon, title, description, delay }: UseCaseStepProps
 }
 
 export function UseCasesSection() {
+    const [api, setApi] = useState<ReturnType<typeof useCarousel>>();
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        if (!api) {
+            return;
+        }
+
+        setCurrentIndex(api.selectedScrollSnap());
+
+        api.on("select", () => {
+            setCurrentIndex(api.selectedScrollSnap());
+        });
+    }, [api]);
+
     return (
         <section className="py-24 bg-black relative overflow-hidden">
             <div className="absolute inset-0 opacity-10">
@@ -127,7 +145,7 @@ export function UseCasesSection() {
             <TechLabel text="USECASE.TSX" position="right" className="top-8" />
 
             <div className="container mx-auto px-4 relative">
-                <Carousel className="w-full max-w-4xl mx-auto">
+                <Carousel className="w-full max-w-4xl mx-auto" setApi={setApi}>
                     <CarouselContent>
                         {useCases.map((useCase, index) => (
                             <CarouselItem key={useCase.id}>
@@ -143,7 +161,7 @@ export function UseCasesSection() {
                                     <p className="text-neutral-400 text-lg mb-12 text-center">
                                         {useCase.description}
                                     </p>
-                                    <div className="space-y-8">
+                                    <div className="space-y-8 md:px-24 px-0">
                                         {useCase.steps.map((step, stepIndex) => (
                                             <UseCaseStep
                                                 key={stepIndex}
@@ -154,15 +172,25 @@ export function UseCasesSection() {
                                             />
                                         ))}
                                     </div>
-
                                 </motion.div>
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <CarouselPrevious className="bg-black border-red-500 text-red-500 hover:bg-red-500 hover:text-white " />
-                    <CarouselNext className="bg-black border-red-500 text-red-500 hover:bg-red-500 hover:text-white " />
+                    <CarouselPrevious className="bg-black border-red-500 text-red-500 hover:bg-red-500 hover:text-white hidden md:flex" />
+                    <CarouselNext className="bg-black border-red-500 text-red-500 hover:bg-red-500 hover:text-white hidden md:flex" />
                 </Carousel>
+                <div className="flex justify-center gap-2 mt-8 md:hidden">
+                    {useCases.map((_, index) => (
+                        <motion.button
+                            key={index}
+                            className={`w-2 h-2 rounded-full ${index === currentIndex ? 'bg-red-500' : 'bg-neutral-700'}`}
+                            animate={{ scale: index === currentIndex ? 1.2 : 1 }}
+                            onClick={() => api?.scrollTo(index)}
+                        />
+                    ))}
+                </div>
             </div>
         </section>
     );
 }
+
