@@ -59,7 +59,7 @@ export function KeyFeatureComponent() {
                 SYSTEM_CAPABILITIES
             </div>
             <div className="absolute right-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-500">
-                FEATURES_SECTION.TSX
+                SOLUTION_SECTION.TSX
                 <Circle size={4} className="text-red-500" />
             </div>
 
@@ -71,7 +71,7 @@ export function KeyFeatureComponent() {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl font-bold tracking-tight text-black">
-                        Core System Features
+                    Our Solution
                     </h2>
                     <p className="text-neutral-600 mt-4 max-w-2xl mx-auto">
                         Stop spending weeks perfecting LLM tool calls. Our plug-and-play agents integrate with over 100+ SaaS tools in just 30 minutes, letting you focus on what matters most - your core business logic.
@@ -109,7 +109,7 @@ export function KeyFeatureComponent() {
                 {/* Processing Status */}
                 <div className="mt-16 text-center">
                     <div className="inline-flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-500">
-                        <Circle size={4} className="text-blue-500 animate-pulse" />
+                        <Circle size={4} className="text-green-800 animate-pulse" />
                         QUANTUM_PROCESSING_ACTIVE
                     </div>
                 </div>

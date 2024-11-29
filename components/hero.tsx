@@ -7,6 +7,8 @@ import { Waitlist } from "./waitlist";
 import Head from 'next/head';
 import TechIcons from "./tech-icons";
 import Link from "next/link";
+import { DotLottieReact } from "@lottiefiles/dotlottie-react"
+
 
 const generateRandomColor = () => {
     const letters = '0123456789ABCDEF';
@@ -173,7 +175,7 @@ export default function Hero() {
                                     <br />Your Gateway to Intelligent API Agents
                                 </h1>
                                 <p className="md:text-xl text-lg text-neutral-600 mb-8 max-w-xl">
-                                Streamline your agentic applications with our plug-and-play agents. Integrate 100+ SaaS tools in minutes.
+                                    Streamline your agentic applications with our plug-and-play agents. Integrate 100+ SaaS tools in minutes.
                                 </p>
                                 <div className="text-sm text-neutral-400 mb-8 font-mono" aria-label="Tagline">
                                     /an agentic system/
@@ -193,34 +195,14 @@ export default function Hero() {
                                 className="relative"
                             >
                                 {/* Technical Imagery */}
-                                <div className="aspect-square bg-black relative overflow-hidden group">
+                                <div className="aspect-square bg-black rounded-lg relative overflow-hidden group">
                                     {/* Animated Circuit Pattern */}
-                                    <div className="absolute inset-0">
-                                        <svg className="w-full h-full" viewBox="0 0 100 100">
-                                            <pattern id="circuit" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                                                <path
-                                                    d="M 10 0 L 10 10 M 10 10 L 20 10"
-                                                    stroke="rgba(59, 130, 246, 0.2)"
-                                                    strokeWidth="0.5"
-                                                    fill="none"
-                                                />
-                                                <circle cx="10" cy="10" r="1" fill="rgba(59, 130, 246, 0.3)" />
-                                            </pattern>
-                                            <rect x="0" y="0" width="100" height="100" fill="url(#circuit)" />
-                                        </svg>
-                                    </div>
-                                    <div className="absolute inset-0">
-                                        <motion.div
-                                            animate={{
-                                                background: [
-                                                    "radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
-                                                    "radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)",
-                                                ],
-                                            }}
-                                            transition={{ duration: 4, repeat: Infinity, repeatType: "reverse" }}
-                                            className="w-full h-full"
-                                        />
-                                    </div>
+                                    <DotLottieReact
+                                        src="/hero-flow.lottie"
+                                        loop={true}
+                                        autoplay={true}
+                                        className="absolute inset-0 p-4"
+                                    />
                                     <TechIcons />
                                     <div className="absolute bottom-0 right-0 p-4 text-xs tracking-[0.2em] text-red-500">
                                         HUMAN / EXPRESSION / INTEGRATION
@@ -236,6 +218,7 @@ export default function Hero() {
                         </div>
                     </div>
                 </div>
+
             </section >
         </>
     );

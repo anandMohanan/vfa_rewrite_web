@@ -31,7 +31,7 @@ export const FooterSection = () => {
                 <Circle size={4} className="text-red-500" />
             </div>
 
-            <div className="container mx-auto px-4 py-16">
+            <div className="container mx-auto px-4 py-28">
                 <div className="grid md:grid-cols-3 gap-16">
                     {/* Company Info */}
                     <motion.div
