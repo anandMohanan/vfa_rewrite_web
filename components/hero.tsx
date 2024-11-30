@@ -172,7 +172,8 @@ export default function Hero() {
                                     <br />Your Gateway to Intelligent API Agents
                                 </h1>
                                 <p className="md:text-xl text-lg text-neutral-600 mb-8 max-w-xl">
-                                    Streamline your agentic applications with our plug-and-play agents. Integrate 100+ SaaS tools in minutes.
+                                Transform your APIs into conversational agents and seamlessly integrate them into your LLM applications. With over 100+ APIs available as agents, you can enhance your applications effortlessly with plug-and-play simplicity.
+
                                 </p>
                                 <div className="text-sm text-neutral-400 mb-8 font-mono" aria-label="Tagline">
                                     /an agentic system/

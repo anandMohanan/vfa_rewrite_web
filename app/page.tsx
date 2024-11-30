@@ -1,3 +1,4 @@
+import { BeforeAfterSection } from "@/components/before-after";
 import Contact from "@/components/contact";
 import FAQ from "@/components/faq";
 import Hero from "@/components/hero";
@@ -21,18 +22,9 @@ export default function Home() {
                 <Hero />
                 <ProblemSection />
                 <KeyFeatureComponent />
-                <UseCasesSection />
+                <BeforeAfterSection />
                 <FAQ />
                 <Contact />
-                <div className="fixed inset-0 pointer-events-none">
-                    <div className="h-full w-full grid grid-cols-[repeat(20,1fr)] grid-rows-[repeat(20,1fr)] gap-px opacity-[0.015]">
-                        {[...Array(400)].map((_, i) => (
-                            <div key={i} className="bg-black" >
-                                TESTTTTTTTTTTT
-                            </div>
-                        ))}
-                    </div>
-                </div>
             </main >
         </>
     );

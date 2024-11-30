@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import {
     Carousel,
-    type CarouselApi,
     CarouselContent,
     CarouselItem,
     CarouselNext,
@@ -11,7 +10,6 @@ import {
 } from "./ui/carousel";
 import { TechLabel } from './ui/tech-label';
 import { GitPullRequest, MessageSquare, Check, Ticket, ListTodo, CheckSquare, MessageCircle, Reply, ThumbsUp, LucideIcon } from 'lucide-react';
-import { CarouselControls } from './carousel-controls';
 import { useEffect, useState } from 'react';
 
 

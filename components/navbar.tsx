@@ -27,7 +27,7 @@ export const Navbar = () => {
                 <Link href={"/"} className="flex items-center gap-8">
                     <div className="text-xl font-mono tracking-[0.2em] flex items-center gap-2">
                         <CircleDot className="text-red-500" size={16} />
-                        AR
+                        NAPIQ
                     </div>
                 </Link>
 

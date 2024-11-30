@@ -34,10 +34,10 @@ export function ProblemSection() {
                         <AlertTriangle className="text-red-500 w-16 h-16" />
                     </div>
                     <h2 className="text-4xl font-bold mb-8">
-                        Struggling with Complex API Integrations?
+                    The Challenge with APIs in Agentic Applications
                     </h2>
                     <p className="text-neutral-400 text-lg leading-relaxed mb-12">
-                        Developers often face significant challenges when integrating agents with SaaS systems like Jira, Git, Slack, CRM, ATS, and more. The complexity of APIs and endpoint dependencies can be overwhelming, making it difficult to make them work in efficient workflows or agentic applications.
+                        APIs often struggle to integrate seamlessly with agentic applications, especially when multiple API requests are needed to complete a task. This leads to complex workflows and increased technical debt.
                     </p>
 
                     {/* Technical Decoration */}
