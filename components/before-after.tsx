@@ -21,7 +21,7 @@ const useCases = [
             ],
         },
         after: {
-            highlight: ['Simple natural language command'],
+            highlight: ['Simple natural language command', 'Conversation memory is maintained, allowing for more complex commands.'],
             code: `PR Review Expert: Get details for PR #34343
 Git Agent: { "id": 34343, "title": "Fix bug", "user": { "login": "dev123" }, ... }
 PR Review Expert: <span class="text-green-500">Approve PR</span>
@@ -149,14 +149,14 @@ function UseCaseExample({ useCase, index }) {
             <p className="text-gray-400 mb-6 decoration-white ">{useCase.useCaseTitle}.{" "}{useCase.description}.</p>
             <div className="grid md:grid-cols-2 gap-8 relative">
                 <div>
-                    <h4 className="text-lg font-semibold mb-4">Before</h4>
+                    <h4 className="text-lg font-semibold mb-4 underline underline-offset-4 decoration-wavy">Before</h4>
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6 }}
                         className=" p-4"
                     >
-                        <pre className="text-sm overflow-x-auto">
+                        <pre className="text-sm overflow-x-auto text-wrap border border-neutral-200 rounded-lg p-4 bg-black">
                             <code dangerouslySetInnerHTML={{ __html: useCase.before.code }} />
                         </pre>
                     </motion.div>
@@ -167,14 +167,14 @@ function UseCaseExample({ useCase, index }) {
                     ))}
                 </div>
                 <div>
-                    <h4 className="text-lg font-semibold mb-4">After</h4>
+                    <h4 className="text-lg font-semibold mb-4 underline underline-offset-4 decoration-wavy">After</h4>
                     <motion.div
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                         className="mt-4  p-4"
                     >
-                        <pre className="text-sm overflow-x-auto text-wrap">
+                        <pre className="text-sm overflow-x-auto text-wrap border border-neutral-200 rounded-lg p-4 bg-black">
                             <code dangerouslySetInnerHTML={{ __html: useCase.after.code }} />
                         </pre>
                     </motion.div>
