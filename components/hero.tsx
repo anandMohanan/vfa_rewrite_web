@@ -178,10 +178,7 @@ export default function Hero() {
                                 </div>
                             </div>
 
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.8, delay: 0.2 }}
+                            <div
                                 className="relative"
                             >
                                 {/* Technical Imagery */}
@@ -204,7 +201,7 @@ export default function Hero() {
                                     <div className="absolute bottom-0 right-0 w-full h-px bg-black" />
                                     <div className="absolute bottom-0 right-0 h-full w-px bg-black" />
                                 </div>
-                            </motion.div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -6,11 +6,13 @@ import { useState } from "react";
 import { TechLabel } from "./ui/tech-label";
 import { useFormspark } from "@formspark/use-formspark";
 import Botpoison from "@botpoison/browser";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 
 export default function Contact() {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
+    const [selectedApi, setSelectedApi] = useState('');
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -27,7 +29,7 @@ export default function Contact() {
         try {
             setLoading(true);
             const { solution } = await botpoison.challenge();
-            await submit({ email, name, message, _botpoison: solution });
+            await submit({ email, name, message, selectedApi, _botpoison: solution });
             setIsSubmitted(true);
             setLoading(false);
         } catch (e) {
@@ -107,6 +109,28 @@ export default function Contact() {
                                         required
                                     />
                                 </div>
+                                <Select value={selectedApi} onValueChange={(value) => setSelectedApi(value)}>
+                                    <SelectTrigger className="bg-white p-4 border border-neutral-300 focus:border-black outline-none transition-colors">
+                                        <SelectValue placeholder="Which API you would like to integrate in your agentic application?" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="github">GitHub</SelectItem>
+                                        <SelectItem value="jira">Jira</SelectItem>
+                                        <SelectItem value="slack">Slack</SelectItem>
+                                        <SelectItem value="trello">Trello</SelectItem>
+                                        <SelectItem value="notion">Notion</SelectItem>
+                                        <SelectItem value="google-sheets">Google Sheets</SelectItem>
+                                        <SelectItem value="salesforce">Salesforce</SelectItem>
+                                        <SelectItem value="zapier">Zapier</SelectItem>
+                                        <SelectItem value="asana">Asana</SelectItem>
+                                        <SelectItem value="shopify">Shopify</SelectItem>
+                                        <SelectItem value="stripe">Stripe</SelectItem>
+                                        <SelectItem value="zendesk">Zendesk</SelectItem>
+                                        <SelectItem value="hubspot">HubSpot</SelectItem>
+                                        <SelectItem value="monday">Monday</SelectItem>
+                                        <SelectItem value="intercom">Intercom</SelectItem>
+                                    </SelectContent>
+                                </Select>
                                 <textarea
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
@@ -120,7 +144,7 @@ export default function Contact() {
                                     className="w-full md:w-auto bg-white text-black px-8 py-4 hover:bg-red-500 transition-colors flex items-center gap-2 justify-center"
                                     disabled={loading}
                                 >
-                                    {loading && <Loader className="w-4 h-4 animate-spin" />}       <span>GET EARLY ACCESS</span>
+                                    {loading && <Loader className="w-4 h-4 animate-spin" />}       <span>BOOK THE DEMO!</span>
                                     <Send className="w-4 h-4" />
                                 </button>
                             </motion.form>
