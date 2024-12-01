@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AlertTriangle, Circle } from "lucide-react";
+import { AlertTriangle, ChevronRight, Circle } from "lucide-react";
 import { TechLabel } from "./ui/tech-label";
+import Link from "next/link";
+import posthog from "posthog-js";
 
 export function ProblemSection() {
     return (
@@ -20,7 +22,7 @@ export function ProblemSection() {
                     ))}
                 </div>
             </div>
-            <TechLabel text="PROBLEM_STATEMENT" position="left" className="top-8" />
+            <TechLabel text="PROBLEM_STATEMENT" position="left" className="top-8 hidden md:flex" />
             <TechLabel text="PROBLEM.TSX" position="right" className="top-8" />
 
             <div className="container mx-auto px-4 relative">
@@ -34,7 +36,7 @@ export function ProblemSection() {
                         <AlertTriangle className="text-red-500 w-16 h-16" />
                     </div>
                     <h2 className="text-4xl font-bold mb-8">
-                    The Challenge with APIs in Agentic Applications
+                        The Challenge with APIs in Agentic Applications
                     </h2>
                     <p className="text-neutral-400 text-lg leading-relaxed mb-12">
                         APIs often struggle to integrate seamlessly with agentic applications, especially when multiple API requests are needed to complete a task. This leads to complex workflows and increased technical debt.
@@ -46,6 +48,16 @@ export function ProblemSection() {
                         <div className="absolute bottom-0 right-0 h-full w-px bg-red-500/20" />
                     </div>
                 </motion.div>
+                <div className="flex gap-4 items-center justify-center">
+                    <Link href="#contact"
+                        onClick={() => {
+                            posthog.capture("clicked PROBLEM CTA")
+                        }}
+                        className={'transition-colors text-black flex items-center gap-2 group bg-[#f5f5f5] px-8 py-3 hover:bg-red-500'}>
+                        SOLVE API INTEGRATION CHALLENGES TODAY!
+                        <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                    </Link>
+                </div>
             </div>
         </section>
     );

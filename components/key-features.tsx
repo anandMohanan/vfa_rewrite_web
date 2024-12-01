@@ -1,7 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Circle, Cpu, Shield, Zap, Network, Brain, Sparkles } from "lucide-react";
+import { Circle, Cpu, Shield, Zap, Network, Brain, Sparkles, ChevronRight } from "lucide-react";
+import { TechLabel } from "./ui/tech-label";
+import Link from "next/link";
+import posthog from "posthog-js";
 
 const features = [
     {
@@ -53,21 +56,14 @@ export function KeyFeatureComponent() {
                 ))}
             </div>
 
-            {/* Technical Labels */}
-            <div className="absolute left-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-500">
-                <Circle size={4} className="text-red-500" />
-                SYSTEM_CAPABILITIES
-            </div>
-            <div className="absolute right-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-500">
-                SOLUTION_SECTION.TSX
-                <Circle size={4} className="text-red-500" />
-            </div>
+            <TechLabel text="SYSTEM_CAPABILITIES" position="left" className="top-8 hidden md:flex" />
+            <TechLabel text="SOLUTION_SECTION.TSX" position="right" className="top-8" />
 
             <div className="container mx-auto px-4 relative">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, type: "tween"}}
+                    transition={{ duration: 0.6, type: "tween" }}
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl font-bold tracking-tight text-black">
@@ -106,12 +102,15 @@ export function KeyFeatureComponent() {
                     ))}
                 </div>
 
-                {/* Processing Status */}
-                <div className="mt-16 text-center">
-                    <div className="inline-flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-500">
-                        <Circle size={4} className="text-green-800 animate-pulse" />
-                        QUANTUM_PROCESSING_ACTIVE
-                    </div>
+                <div className="flex gap-4 items-center justify-center mt-12">
+                    <Link href="#contact"
+                        onClick={() => {
+                            posthog.capture("clicked FEATURES CTA")
+                        }}
+                        className={'transition-colors text-white flex items-center gap-2 group bg-black px-8 py-3 hover:bg-red-500'}>
+                        Experience Seamless API Integration!
+                        <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                    </Link>
                 </div>
             </div>
         </section>

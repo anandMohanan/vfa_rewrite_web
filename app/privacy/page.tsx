@@ -1,8 +1,71 @@
-"use client";
-
 import { motion } from "framer-motion";
 import { Circle, ArrowLeft } from "lucide-react";
+import { Metadata } from "next";
 import Link from "next/link";
+import { PrivacyContent } from "./privacy-content";
+
+export const metadata: Metadata = {
+    title: "Privacy Policy | V Automate",
+    description: "Read our comprehensive privacy policy detailing how V Automate collects, uses, and protects your personal information. Understand our commitment to data privacy and security.",
+    keywords: [
+        "privacy policy",
+        "data protection",
+        "user privacy",
+        "data handling",
+        "information security",
+        "privacy terms",
+        "GDPR compliance",
+        "data privacy",
+        "user data protection",
+        "information security policy",
+        "privacy guidelines",
+        "transparent data practices",
+        "data confidentiality",
+        "user information security",
+        "privacy commitment",
+        "ethical data handling"
+    ],
+    authors: [{ name: "V Automate Legal Team" }],
+    metadataBase: new URL('https://vautomate.ai'),
+    alternates: {
+        canonical: '/privacy'
+    },
+    openGraph: {
+        type: 'website',
+        locale: 'en_US',
+        url: '/privacy',
+        siteName: 'V Automate',
+        title: "V Automate Privacy Policy - Protecting Your Data",
+        description: "Comprehensive privacy policy for V Automate. Learn how we safeguard your personal information and maintain data privacy.",
+        images: [
+            {
+                url: '/opengraph-image.png',
+                width: 1200,
+                height: 630,
+                alt: 'V Automate Privacy Policy',
+            },
+        ],
+    },
+    twitter: {
+        card: 'summary_large_image',
+        site: '@vautomate',
+        creator: '@vautomate',
+        title: "Privacy Policy | V Automate",
+        description: "Discover our commitment to protecting your data and maintaining privacy standards."
+    },
+    robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+            index: true,
+            follow: true,
+        }
+    },
+    other: {
+        'privacy-policy-version': '1.0.0',
+        'last-updated': '2024-28-11'
+    }
+};
 
 export default function Privacy() {
     return (
@@ -17,63 +80,8 @@ export default function Privacy() {
                 PRIVACY.TSX
                 <Circle size={4} className="text-red-500" />
             </div>
+            <PrivacyContent />
 
-            <div className="container mx-auto px-4 py-24">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="max-w-3xl mx-auto"
-                >
-                    <Link
-                        href="/"
-                        className="inline-flex items-center gap-2 text-sm mb-8 hover:text-red-500 transition-colors group"
-                    >
-                        <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-                        Back to Home
-                    </Link>
-
-                    <div className="bg-white border border-neutral-200 p-8 relative">
-                        <h1 className="text-4xl font-bold mb-8 tracking-tight">Privacy Policy</h1>
-
-                        <div className="space-y-6 text-neutral-600">
-                            <p>Last updated: 2024-28-11</p>
-
-                            <section>
-                                <h2 className="text-xl font-bold mb-4 text-black">1. Information Collection</h2>
-                                <p>We collect information that you provide directly to us when using our services.</p>
-                            </section>
-
-                            <section>
-                                <h2 className="text-xl font-bold mb-4 text-black">2. Use of Information</h2>
-                                <p>We use the collected information to provide and improve our services.</p>
-                            </section>
-
-                            <section>
-                                <h2 className="text-xl font-bold mb-4 text-black">3. Information Sharing</h2>
-                                <p>We do not sell or share your personal information with third parties.</p>
-                            </section>
-
-                            <section>
-                                <h2 className="text-xl font-bold mb-4 text-black">4. Security</h2>
-                                <p>We implement appropriate security measures to protect your information.</p>
-                            </section>
-                        </div>
-
-                        {/* Technical Decoration */}
-                        <div className="absolute -bottom-4 -right-4 w-8 h-8">
-                            <div className="absolute bottom-0 right-0 w-full h-px bg-red-500" />
-                            <div className="absolute bottom-0 right-0 h-full w-px bg-red-500" />
-                        </div>
-                    </div>
-
-                    {/* Technical Coordinates */}
-                    <div className="mt-8 flex justify-between text-xs tracking-[0.2em] text-neutral-400">
-                        <div>DOCUMENT_ID: PRIV_2004</div>
-                        <div>VERSION: 1.0.0</div>
-                    </div>
-                </motion.div>
-            </div>
         </div>
     );
 }

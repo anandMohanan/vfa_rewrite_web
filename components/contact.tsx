@@ -1,18 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Circle, Sparkles, Send } from "lucide-react";
+import { Circle, Sparkles, Send, CheckCircle2, Loader } from "lucide-react";
 import { useState } from "react";
+import { TechLabel } from "./ui/tech-label";
+import { useFormspark } from "@formspark/use-formspark";
+import Botpoison from "@botpoison/browser";
 
 export default function Contact() {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+
+    const [submit, submitting] = useFormspark({
+        formId: process.env.NEXT_PUBLIC_FORM_SPARK_ID!,
+    });
+    const botpoison = new Botpoison({
+        publicKey: process.env.NEXT_PUBLIC_BOT_POISON_ID!,
+    });
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log('Form submitted:', { email, name, message });
+        try {
+            setLoading(true);
+            const { solution } = await botpoison.challenge();
+            await submit({ email, name, message, _botpoison: solution });
+            setIsSubmitted(true);
+            setLoading(false);
+        } catch (e) {
+        }
     };
 
     return (
@@ -31,15 +50,9 @@ export default function Contact() {
                 </div>
             </div>
 
-            {/* Technical Labels */}
-            <div className="absolute left-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400">
-                <Circle size={4} className="text-red-500" />
-                COMM_INTERFACE
-            </div>
-            <div className="absolute right-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400">
-                CONTACT.TSX
-                <Circle size={4} className="text-red-500" />
-            </div>
+            <TechLabel text="COMM_INTERFACE" position="left" className="top-8 hidden md:flex" />
+            <TechLabel text="CONTACT.TSX" position="right" className="top-8" />
+
 
             <div className="container mx-auto px-4 relative">
                 <motion.div
@@ -48,74 +61,110 @@ export default function Contact() {
                     transition={{ duration: 0.6 }}
                     className="max-w-2xl mx-auto"
                 >
-                    <div className="text-center mb-12">
+                    {!isSubmitted ? (
+                        <>
+                            <div className="text-center mb-12">
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    className="flex items-center justify-center gap-2 mb-4"
+                                >
+                                    <Sparkles className="w-5 h-5 text-red-500" />
+                                    <span className="text-xs tracking-[0.2em] text-neutral-400">
+                                        BETA_ACCESS::AVAILABLE
+                                    </span>
+                                </motion.div>
+                                <h2 className="text-4xl font-bold mb-4 tracking-tight text-white">
+                                    Join the Early Release
+                                </h2>
+                                <p className="text-neutral-200">
+                                    Be among the first to experience the power of AgentRelay and shape the future of development.
+                                </p>
+                            </div>
+
+                            <motion.form
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6 }}
+                                onSubmit={handleSubmit}
+                                className="space-y-6"
+                            >
+                                <div className="grid md:grid-cols-2 gap-6">
+                                    <input
+                                        type="text"
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder="Name"
+                                        className="w-full p-4 border border-neutral-300 focus:border-black outline-none transition-colors"
+                                        required
+                                    />
+                                    <input
+                                        type="email"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        placeholder="Email"
+                                        className="w-full p-4 border border-neutral-300 focus:border-black outline-none transition-colors"
+                                        required
+                                    />
+                                </div>
+                                <textarea
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
+                                    placeholder="Tell us about your use case"
+                                    rows={6}
+                                    className="w-full p-4 border border-neutral-300 focus:border-black outline-none transition-colors"
+                                    required
+                                />
+                                <button
+                                    type="submit"
+                                    className="w-full md:w-auto bg-white text-black px-8 py-4 hover:bg-red-500 transition-colors flex items-center gap-2 justify-center"
+                                    disabled={loading}
+                                >
+                                    {loading && <Loader className="w-4 h-4 animate-spin" />}       <span>GET EARLY ACCESS</span>
+                                    <Send className="w-4 h-4" />
+                                </button>
+                            </motion.form>
+
+
+                            {/* System Status */}
+                            <div className="mt-12 text-center">
+                                <div className="inline-flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400">
+                                    <Circle size={4} className="text-green-500" />
+                                    COMM_SYSTEM::READY
+                                </div>
+                            </div>
+                        </>
+                    ) : (
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="flex items-center justify-center gap-2 mb-4"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5 }}
+                            className="text-center"
                         >
-                            <Sparkles className="w-5 h-5 text-red-500" />
-                            <span className="text-xs tracking-[0.2em] text-neutral-400">
-                                BETA_ACCESS::AVAILABLE
-                            </span>
+                            <div className="mb-8 flex justify-center">
+                                <motion.div
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                                >
+                                    <CheckCircle2 className="w-16 h-16 text-green-500" />
+                                </motion.div>
+                            </div>
+                            <h3 className="text-2xl font-bold mb-4 text-white">
+                                Thank You for Joining!
+                            </h3>
+                            <p className="text-neutral-300 mb-8">
+                                We're excited to have you on board. We'll be in touch soon with more
+                                information about the early release.
+                            </p>
+                            <div className="p-4 bg-neutral-900/50 rounded-lg border border-neutral-800">
+                                <p className="text-sm text-neutral-400">
+                                    <span className="text-green-500 font-mono">STATUS::</span> Your request has been
+                                    successfully processed.
+                                </p>
+                            </div>
                         </motion.div>
-                        <h2 className="text-4xl font-bold mb-4 tracking-tight text-white">
-                            Join the Early Release
-                        </h2>
-                        <p className="text-neutral-200">
-                            Be among the first to experience the power of AgentRelay and shape the future of development.
-                        </p>
-                    </div>
-
-                    <motion.form
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                        onSubmit={handleSubmit}
-                        className="space-y-6"
-                    >
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Name"
-                                className="w-full p-4 border border-neutral-300 focus:border-black outline-none transition-colors"
-                                required
-                            />
-                            <input
-                                type="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                                placeholder="Email"
-                                className="w-full p-4 border border-neutral-300 focus:border-black outline-none transition-colors"
-                                required
-                            />
-                        </div>
-                        <textarea
-                            value={message}
-                            onChange={(e) => setMessage(e.target.value)}
-                            placeholder="Tell us about your use case"
-                            rows={6}
-                            className="w-full p-4 border border-neutral-300 focus:border-black outline-none transition-colors"
-                            required
-                        />
-                        <button
-                            type="submit"
-                            className="w-full md:w-auto bg-white text-black px-8 py-4 hover:bg-red-500 transition-colors flex items-center gap-2 justify-center"
-                        >
-                            <span>GET EARLY ACCESS</span>
-                            <Send className="w-4 h-4" />
-                        </button>
-                    </motion.form>
-
-                    {/* System Status */}
-                    <div className="mt-12 text-center">
-                        <div className="inline-flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400">
-                            <Circle size={4} className="text-green-500" />
-                            COMM_SYSTEM::READY
-                        </div>
-                    </div>
+                    )}
                 </motion.div>
             </div>
         </section>

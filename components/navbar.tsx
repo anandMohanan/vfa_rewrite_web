@@ -27,7 +27,7 @@ export const Navbar = () => {
                 <Link href={"/"} className="flex items-center gap-8">
                     <div className="text-xl font-mono tracking-[0.2em] flex items-center gap-2">
                         <CircleDot className="text-red-500" size={16} />
-                        NAPIQ
+                        VAutomate
                     </div>
                 </Link>
 
@@ -56,9 +56,9 @@ export const Navbar = () => {
 
                     <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}
 
-                onClick={() => {
-                    posthog.capture("clicked nav join waitlist")
-                }}
+                        onClick={() => {
+                            posthog.capture("clicked NAV CTA")
+                        }}
                     >
                         JOIN THE WAITLIST
                     </Link>
@@ -93,10 +93,10 @@ export const Navbar = () => {
                         <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                     </Link>
                 ))}
-                <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')} 
-                onClick={() => {
-                    posthog.capture("clicked nav join waitlist")
-                }}
+                <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}
+                    onClick={() => {
+                        posthog.capture("clicked nav join waitlist")
+                    }}
                 >
                     JOIN THE WAITLIST
                 </Link>

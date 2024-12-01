@@ -25,34 +25,6 @@ const spaceGrotesk = Space_Grotesk({
     display: 'swap',
 });
 
-export const metadata: Metadata = {
-    title: {
-        default: "V Automate | AI-Powered Business Automation",
-        template: "%s | V Automate"
-    },
-    description: "V Automate revolutionizes your business processes with AI-powered automation solutions. Create custom API agents for seamless integration and maximum efficiency.",
-    keywords: ["V Automate", "AI automation", "business efficiency", "custom API agents", "process optimization"],
-    authors: [{ name: "V Automate" }],
-    openGraph: {
-        type: 'website',
-        locale: 'en_US',
-        url: 'https://vautomate.com',
-        siteName: 'V Automate',
-        images: [
-            {
-                url: 'https://vautomate.com/og-image.jpg',
-                width: 1200,
-                height: 630,
-                alt: 'V Automate: AI-Powered Business Automation',
-            },
-        ],
-    },
-    twitter: {
-        card: 'summary_large_image',
-        site: '@vautomate',
-        creator: '@vautomate',
-    },
-};
 
 export default function RootLayout({
     children,

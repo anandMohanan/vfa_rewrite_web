@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { ChevronRight, Circle } from 'lucide-react';
 import { useState } from "react";
-import { Waitlist } from "./waitlist";
-import Head from 'next/head';
 import TechIcons from "./tech-icons";
 import Link from "next/link";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react"
+import { TechLabel } from "./ui/tech-label";
+import posthog from "posthog-js";
 
 
 const generateRandomColor = () => {
@@ -40,11 +40,6 @@ export default function Hero() {
 
     return (
         <>
-            <Head>
-                <title>Automate with AI Agents | Seamless Integration for Your Systems</title>
-                <meta name="description" content="Create custom API AI agents that seamlessly integrate with your existing systems. Join our waitlist to automate and amplify your efficiency." />
-                <meta name="keywords" content="AI agents, automation, API integration, efficiency" />
-            </Head>
             <section className="lg:h-screen pt-32 pb-24 relative bg-[#f5f5f5]" aria-label="Hero section">
                 {/* Technical Grid Background */}
                 <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03] pointer-events-none" aria-hidden="true">
@@ -63,15 +58,8 @@ export default function Hero() {
                     <div className="absolute top-0 right-0 h-full w-px bg-black" />
                 </div>
 
-                {/* Technical Labels */}
-                <div className="absolute left-8 top-40 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400" aria-hidden="true">
-                    <Circle size={4} className="text-red-500" />
-                    EFFICIENCY AMPLIFIED
-                </div>
-                <div className="absolute right-8 top-40 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400" aria-hidden="true">
-                    HERO.TSX
-                    <Circle size={4} className="text-red-500" />
-                </div>
+                <TechLabel text="EFFICIENCY AMPLIFIED" position="left" className="top-48" />
+                <TechLabel text="HERO.TSX" position="right" className="top-48" />
 
                 <div className="container mx-auto px-4 relative">
                     <div className="max-w-6xl mx-auto">
@@ -172,15 +160,19 @@ export default function Hero() {
                                     <br />Your Gateway to Intelligent API Agents
                                 </h1>
                                 <p className="md:text-xl text-lg text-neutral-600 mb-8 max-w-xl">
-                                Transform your APIs into conversational agents and seamlessly integrate them into your LLM applications. With over 100+ APIs available as agents, you can enhance your applications effortlessly with plug-and-play simplicity.
+                                    Transform your APIs into conversational agents and seamlessly integrate them into your LLM applications. With over 100+ APIs available as agents, you can enhance your applications effortlessly with plug-and-play simplicity.
 
                                 </p>
                                 <div className="text-sm text-neutral-400 mb-8 font-mono" aria-label="Tagline">
                                     /an agentic system/
                                 </div>
                                 <div className="flex gap-4">
-                                    <Link href="#contact" className={'transition-colors flex items-center gap-2 group bg-black text-white px-8 py-3 hover:bg-red-500'}>
-                                        JOIN THE WAITLIST
+                                    <Link href="#contact"
+                                        onClick={() => {
+                                            posthog.capture("clicked HERO CTA")
+                                        }}
+                                        className={'transition-colors flex items-center gap-2 group bg-black text-white px-8 py-3 hover:bg-red-500'}>
+                                        GET EARLY ACCESS TO INTELLIGENT API AGENTS!
                                         <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                                     </Link>
                                 </div>

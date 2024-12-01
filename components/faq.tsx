@@ -1,29 +1,32 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Circle } from "lucide-react";
+import { ChevronRight, Circle } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
+import { TechLabel } from "./ui/tech-label";
+import Link from "next/link";
+import posthog from "posthog-js";
 
 const faqs = [
     {
-        question: "How does AgentRelay simplify API integration?",
-        answer: "AgentRelay provides instantiated API agents that act as wrappers, hiding the complexity of flow and dependency of API requests."
+        question: "How does VAutomate simplify API integration?",
+        answer: "VAutomate provides instantiated API agents that act as wrappers, hiding the complexity of flow and dependency of API requests."
     },
     {
-        question: "Can I use AgentRelay with my existing tools?",
-        answer: "Yes, AgentRelay offers agents for popular tools like Slack and Jira, and can be easily connected to your application."
+        question: "Can I use VAutomate with my existing tools?",
+        answer: "Yes, VAutomate offers agents for popular tools like Slack and Jira, and can be easily connected to your application."
     },
     {
-        question: "Is AgentRelay suitable for complex applications?",
-        answer: "Absolutely. AgentRelay is designed to help developers build complex agentic applications with ease."
+        question: "Is VAutomate suitable for complex applications?",
+        answer: "Absolutely. VAutomate is designed to help developers build complex agentic applications with ease."
     },
     {
-        question: "How secure is AgentRelay?",
-        answer: "Security is a top priority for us. AgentRelay is built with robust security measures to ensure your data and operations are safe."
+        question: "How secure is VAutomate?",
+        answer: "Security is a top priority for us. VAutomate is built with robust security measures to ensure your data and operations are safe."
     },
     {
         question: "What kind of support can I expect during the early release?",
-        answer: "During the early release, you will have access to dedicated support to help you integrate and use AgentRelay effectively."
+        answer: "During the early release, you will have access to dedicated support to help you integrate and use VAutomate effectively."
     }
 ];
 
@@ -47,15 +50,9 @@ export default function FAQ() {
                 <div className="absolute bottom-0 right-0 h-full w-px bg-black" />
             </div>
 
-            {/* Technical Labels */}
-            <div className="absolute left-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400">
-                <Circle size={4} className="text-red-500" />
-                KNOWLEDGE BASE
-            </div>
-            <div className="absolute right-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400">
-                FAQ_SECTION.TSX
-                <Circle size={4} className="text-red-500" />
-            </div>
+
+            <TechLabel text="KNOWLEDGE BASE" position="left" className="top-8 hidden md:flex" />
+            <TechLabel text="FAQ_SECTION.TSX" position="right" className="top-8" />
 
             <div className="container mx-auto px-4 relative">
                 <motion.div
@@ -68,7 +65,7 @@ export default function FAQ() {
                         Frequently Asked Questions
                     </h2>
                     <p className="text-neutral-600 mt-4 max-w-2xl mx-auto">
-                        Everything you need to know about AgentRelay and how it can transform your development workflow.
+                        Everything you need to know about VAutomate and how it can transform your development workflow.
                     </p>
                 </motion.div>
 
@@ -107,6 +104,16 @@ export default function FAQ() {
                         ))}
                     </Accordion>
                 </motion.div>
+                <div className="flex gap-4 items-center justify-center mt-12">
+                    <Link href="#contact"
+                        onClick={() => {
+                            posthog.capture("clicked FAQ CTA")
+                        }}
+                        className={'transition-colors text-white flex items-center gap-2 group bg-black px-8 py-3 hover:bg-red-500'}>
+                        Still Curious? See How It Works!
+                        <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                    </Link>
+                </div>
 
                 {/* Technical Coordinates */}
                 <div className="mt-16 flex justify-between text-xs tracking-[0.2em] text-neutral-400 max-w-3xl mx-auto">

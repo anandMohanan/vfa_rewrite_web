@@ -2,7 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { TechLabel } from './ui/tech-label'
-import { GitPullRequest, ClipboardList, MessageCircle, ArrowRight, Circle } from 'lucide-react'
+import { GitPullRequest, ClipboardList, MessageCircle, ArrowRight, Circle, ChevronRight } from 'lucide-react'
+import Link from 'next/link'
+import posthog from 'posthog-js'
 
 const useCases = [
     {
@@ -22,10 +24,12 @@ const useCases = [
         },
         after: {
             highlight: ['Simple natural language command', 'Conversation memory is maintained, allowing for more complex commands.'],
-            code: `PR Review Expert: Get details for PR #34343
-Git Agent: { "id": 34343, "title": "Fix bug", "user": { "login": "dev123" }, ... }
-PR Review Expert: <span class="text-green-500">Approve PR</span>
-Git Agent: { "sha": "abc123", "merged": true, ... }`,
+            messages: [
+                { role: 'user', name: 'PR Review Expert', content: 'Get details for PR #34343' },
+                { role: 'assistant', name: 'Git Agent', content: '{ "id": 34343, "title": "Fix bug", "user": { "login": "dev123" }, ... }' },
+                { role: 'user', name: 'PR Review Expert', content: 'Approve PR', className: 'text-green-500' },
+                { role: 'assistant', name: 'Git Agent', content: '{ "sha": "abc123", "merged": true, ... }' }
+            ]
         },
         description: 'Simplify PR approvals with natural language commands',
         useCaseTitle: "Automate PR review, comments, and approval process"
@@ -50,13 +54,15 @@ Git Agent: { "sha": "abc123", "merged": true, ... }`,
         },
         after: {
             highlight: ['Conversational task creation', 'Jira Agent ensures all required fields are provided, making the process robust and user-friendly.'],
-            code: `Project Manager: "Create task 'New feature' in project 'PROJ'"
-Jira Agent: <span class="text-green-500">Please provide a description for the task.</span>
-Project Manager: "Implement user authentication feature"
-Jira Agent: { "id": "10000", "key": "PROJ-1", ... }`,
+            messages: [
+                { role: 'user', name: 'Project Manager', content: 'Create task "New feature" in project "PROJ"' },
+                { role: 'assistant', name: 'Jira Agent', content: 'Please provide a description for the task.', className: 'text-green-500' },
+                { role: 'user', name: 'Project Manager', content: 'Implement user authentication feature' },
+                { role: 'assistant', name: 'Jira Agent', content: '{ "id": "10000", "key": "PROJ-1", ... }' }
+            ]
         },
         description: 'Create and manage tasks using conversational language',
-        useCaseTitle: " Automate task creation, updates, and status tracking"
+        useCaseTitle: "Automate task creation, updates, and status tracking"
     },
     {
         id: 'slack',
@@ -74,10 +80,12 @@ Jira Agent: { "id": "10000", "key": "PROJ-1", ... }`,
         },
         after: {
             highlight: ['Single natural language command', 'Slack Agent automates the entire process, eliminating the need for multiple tools and manual handling.'],
-            code: `Comms Manager: <span class="text-green-500">"Update last message in #general to 'Meeting at 3PM'"</span>
-Slack Agent: Fetching last message...
-Slack Agent: Updating message...
-Slack Agent: { "ok": true, "ts": "1234567890.123456", ... }`,
+            messages: [
+                { role: 'user', name: 'Comms Manager', content: 'Update last message in #general to "Meeting at 3PM"', className: 'text-green-500' },
+                { role: 'assistant', name: 'Slack Agent', content: 'Fetching last message...' },
+                { role: 'assistant', name: 'Slack Agent', content: 'Updating message...' },
+                { role: 'assistant', name: 'Slack Agent', content: '{ "ok": true, "ts": "1234567890.123456", ... }' }
+            ]
         },
         description: 'Seamlessly update messages and send notifications',
         useCaseTitle: "Automate team notifications and updates"
@@ -127,9 +135,44 @@ export function BeforeAfterSection() {
                         <UseCaseExample key={useCase.id} useCase={useCase} index={index} />
                     ))}
                 </div>
-
+                <div className="flex gap-4 items-center justify-center mt-12">
+                    <Link href="#contact"
+                        onClick={() => {
+                            posthog.capture("clicked USECASES CTA")
+                        }}
+                        className={'transition-colors text-black flex items-center gap-2 group bg-[#f5f5f5] px-8 py-3 hover:bg-red-500'}>
+                        Discover Better Workflows with Intelligent Agents!
+                        <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                    </Link>
+                </div>
             </div>
         </section>
+    )
+}
+
+function ChatMessage({ message, isLast }) {
+    const isUser = message.role === 'user'
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, x: isUser ? -20 : 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className={`flex ${isUser ? 'justify-start' : 'justify-end'} mb-2`}
+        >
+            <div className={`max-w-[80%] ${isUser ? 'ml-0 mr-auto' : 'ml-auto mr-0'}`}>
+                <div className={`text-xs text-neutral-400 mb-1 ${isUser ? 'text-left' : 'text-right'}`}>
+                    {message.name}
+                </div>
+                <div className={`rounded-lg p-3 ${isUser ? '' : ''} ${message.className || ''}`}>
+                    <pre className="text-sm whitespace-pre-wrap font-mono">
+                        <code>{message.content}</code>
+                    </pre>
+                </div>
+                {!isLast && (
+                    <div className={`w-px h-4 bg-neutral-700 ${isUser ? 'ml-4' : 'mr-4'} mx-auto`} />
+                )}
+            </div>
+        </motion.div>
     )
 }
 
@@ -146,7 +189,7 @@ function UseCaseExample({ useCase, index }) {
                 <Icon className="w-6 h-6" />
                 <h3 className="text-2xl font-bold">{useCase.title}</h3>
             </div>
-            <p className="text-gray-400 mb-6 decoration-white ">{useCase.useCaseTitle}.{" "}{useCase.description}.</p>
+            <p className="text-gray-400 mb-6 decoration-white">{useCase.useCaseTitle}.{" "}{useCase.description}.</p>
             <div className="grid md:grid-cols-2 gap-8 relative">
                 <div>
                     <h4 className="text-lg font-semibold mb-4 underline underline-offset-4 decoration-wavy">Before</h4>
@@ -154,7 +197,7 @@ function UseCaseExample({ useCase, index }) {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6 }}
-                        className=" p-4"
+                        className="p-4"
                     >
                         <pre className="text-sm overflow-x-auto text-wrap border border-neutral-200 rounded-lg p-4 bg-black">
                             <code dangerouslySetInnerHTML={{ __html: useCase.before.code }} />
@@ -172,11 +215,17 @@ function UseCaseExample({ useCase, index }) {
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
-                        className="mt-4  p-4"
+                        className="mt-4 p-4 border border-neutral-200 rounded-lg bg-black"
                     >
-                        <pre className="text-sm overflow-x-auto text-wrap border border-neutral-200 rounded-lg p-4 bg-black">
-                            <code dangerouslySetInnerHTML={{ __html: useCase.after.code }} />
-                        </pre>
+                        <div className="space-y-4">
+                            {useCase.after.messages.map((message, idx) => (
+                                <ChatMessage
+                                    key={idx}
+                                    message={message}
+                                    isLast={idx === useCase.after.messages.length - 1}
+                                />
+                            ))}
+                        </div>
                     </motion.div>
                     {useCase.after.highlight.map((highlight, index) => (
                         <ul key={index} className="text-green-400 mt-2 text-sm list-disc">
@@ -188,5 +237,3 @@ function UseCaseExample({ useCase, index }) {
         </motion.div>
     )
 }
-
-
