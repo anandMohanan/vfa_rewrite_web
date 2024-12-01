@@ -34,9 +34,8 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                <link rel="icon" href="/favicon.ico" sizes="any" />
-                <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
                 <meta name="theme-color" content="#f5f5f5" />
+                <meta name="google-site-verification" content="4C2WvIUYTLfFzyxrD8kr5_B-H_r_ItHEzlBqAQak1q0" />
             </head>
             <PosthogProvider>
             <body
