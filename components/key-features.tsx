@@ -48,7 +48,7 @@ const features = [
 
 export function KeyFeatureComponent() {
     return (
-        <section className="py-24 bg-[#f5f5f5] text-white relative overflow-hidden" id="features">
+        <section className="py-24 bg-black text-white relative overflow-hidden" id="features">
             {/* Animated Background Grid */}
             <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03]">
                 {[...Array(1600)].map((_, i) => (
@@ -66,10 +66,10 @@ export function KeyFeatureComponent() {
                     transition={{ duration: 0.6, type: "tween" }}
                     className="text-center mb-16"
                 >
-                    <h2 className="text-4xl font-bold tracking-tight text-black">
+                    <h2 className="text-4xl font-bold tracking-tight text-white">
                         Our Solution
                     </h2>
-                    <p className="text-neutral-600 mt-4 max-w-2xl mx-auto">
+                    <p className="text-neutral-400 mt-4 max-w-2xl mx-auto">
                         Stop spending weeks perfecting LLM tool calls. Our plug-and-play agents integrate with over 100+ SaaS tools in just 30 minutes, letting you focus on what matters most - your core business logic.
                     </p>
                 </motion.div>
@@ -107,7 +107,7 @@ export function KeyFeatureComponent() {
                         onClick={() => {
                             posthog.capture("clicked FEATURES CTA")
                         }}
-                        className={'transition-colors text-white flex items-center gap-2 group bg-black px-8 py-3 hover:bg-red-500'}>
+                        className={'transition-colors text-black flex items-center gap-2 group bg-[#f5f5f5] px-8 py-3 hover:bg-red-500'}>
                         Experience Seamless API Integration!
                         <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </Link>

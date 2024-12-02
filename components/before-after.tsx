@@ -94,19 +94,11 @@ const useCases = [
 
 export function BeforeAfterSection() {
     return (
-        <section className="py-24 bg-black text-white relative overflow-hidden" id="usecases">
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0 grid grid-cols-[repeat(20,1fr)] grid-rows-[repeat(20,1fr)]">
-                    {[...Array(400)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{ opacity: 0.1 }}
-                            animate={{ opacity: Math.random() }}
-                            transition={{ duration: 2, repeat: 1 }}
-                            className="border-[0.5px] border-white"
-                        />
-                    ))}
-                </div>
+        <section className="py-24 bg-[#f5f5f5] text-black relative overflow-hidden" id="usecases">
+            <div className="absolute inset-0 grid grid-cols-[repeat(40,1fr)] grid-rows-[repeat(40,1fr)] opacity-[0.03]">
+                {[...Array(1600)].map((_, i) => (
+                    <div key={i} className="border-[0.5px] border-black" />
+                ))}
             </div>
 
             <TechLabel text="USE_CASE_EXAMPLE" position="left" className="top-8" />
@@ -125,7 +117,7 @@ export function BeforeAfterSection() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-gray-400 text-lg mb-12 text-center"
+                    className="text-gray-800 text-lg mb-12 text-center"
                 >
                     Transform complex workflows into seamless interactions
                 </motion.p>
@@ -140,7 +132,7 @@ export function BeforeAfterSection() {
                         onClick={() => {
                             posthog.capture("clicked USECASES CTA")
                         }}
-                        className={'transition-colors text-black flex items-center gap-2 group bg-[#f5f5f5] px-8 py-3 hover:bg-red-500'}>
+                        className={'transition-colors text-white flex items-center gap-2 group bg-black px-8 py-3 hover:bg-red-500'}>
                         Discover Better Workflows with Intelligent Agents!
                         <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                     </Link>
@@ -160,11 +152,11 @@ function ChatMessage({ message, isLast }) {
             className={`flex ${isUser ? 'justify-start' : 'justify-end'} mb-2`}
         >
             <div className={`max-w-[80%] ${isUser ? 'ml-0 mr-auto' : 'ml-auto mr-0'}`}>
-                <div className={`text-xs text-neutral-400 mb-1 ${isUser ? 'text-left' : 'text-right'}`}>
+                <div className={`text-xs text-neutral-400 mb-1 ${isUser ? 'text-left' : 'text-right'} text-white`}>
                     {message.name}
                 </div>
                 <div className={`rounded-lg p-3 ${isUser ? '' : ''} ${message.className || ''}`}>
-                    <pre className="text-sm whitespace-pre-wrap font-mono">
+                    <pre className="text-sm whitespace-pre-wrap font-mono text-green-200">
                         <code>{message.content}</code>
                     </pre>
                 </div>
@@ -199,12 +191,12 @@ function UseCaseExample({ useCase, index }) {
                         transition={{ duration: 0.6 }}
                         className="p-4"
                     >
-                        <pre className="text-sm overflow-x-auto text-wrap border border-neutral-200 rounded-lg p-4 bg-black">
+                        <pre className="text-sm overflow-x-auto text-wrap border border-neutral-200 rounded-lg p-4 bg-black text-white">
                             <code dangerouslySetInnerHTML={{ __html: useCase.before.code }} />
                         </pre>
                     </motion.div>
                     {useCase.before.highlight.map((highlight, index) => (
-                        <ul key={index} className="text-red-400 mt-2 text-sm list-disc">
+                        <ul key={index} className="text-red-600 mt-2 text-sm list-disc">
                             <li key={index}>{highlight}</li>
                         </ul>
                     ))}
@@ -228,7 +220,7 @@ function UseCaseExample({ useCase, index }) {
                         </div>
                     </motion.div>
                     {useCase.after.highlight.map((highlight, index) => (
-                        <ul key={index} className="text-green-400 mt-2 text-sm list-disc">
+                        <ul key={index} className="text-green-600 mt-2 text-sm list-disc">
                             <li key={index}>{highlight}</li>
                         </ul>
                     ))}
