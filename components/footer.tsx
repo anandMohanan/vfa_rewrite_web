@@ -47,10 +47,10 @@ export const FooterSection = () => {
                             Revolutionizing API integration with intelligent agents for the next generation of software development.
                         </p>
                         <div className="flex items-center gap-4">
-                            <Link href="mailto:contact@stolc.com" className="text-neutral-400 hover:text-red-500 transition-colors">
+                            <Link href="mailto:ashishbindal@voicefirstai.com" className="text-neutral-400 hover:text-red-500 transition-colors">
                                 <Mail size={20} />
                             </Link>
-                            <Link href="tel:+1234567890" className="text-neutral-400 hover:text-red-500 transition-colors">
+                            <Link href="tel:+41774283103" className="text-neutral-400 hover:text-red-500 transition-colors">
                                 <Phone size={20} />
                             </Link>
                         </div>

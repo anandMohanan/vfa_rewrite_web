@@ -94,10 +94,6 @@ export const metadata: Metadata = {
             'max-snippet': -1
         }
     },
-    verification: {
-        google: 'your-google-site-verification-code',
-        // Add other verification codes as needed
-    }
 };
 
 export default function Home() {
@@ -107,8 +103,8 @@ export default function Home() {
                 <div className="h-1 w-full bg-gradient-to-r from-red-500 via-neutral-200 to-neutral-300" />
                 <Hero />
                 <ProblemSection />
-                <KeyFeatureComponent />
                 <BeforeAfterSection />
+                <KeyFeatureComponent />
                 <FAQ />
                 <Contact />
             </main >
