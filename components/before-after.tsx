@@ -181,7 +181,7 @@ function UseCaseExample({ useCase, index }) {
                 <Icon className="w-6 h-6" />
                 <h3 className="text-2xl font-bold">{useCase.title}</h3>
             </div>
-            <p className="text-gray-400 mb-6 decoration-white">{useCase.useCaseTitle}.{" "}{useCase.description}.</p>
+            <p className="text-gray-800 mb-6 decoration-white">{useCase.useCaseTitle}.{" "}{useCase.description}.</p>
             <div className="grid md:grid-cols-2 gap-8 relative">
                 <div>
                     <h4 className="text-lg font-semibold mb-4 underline underline-offset-4 decoration-wavy">Before</h4>
