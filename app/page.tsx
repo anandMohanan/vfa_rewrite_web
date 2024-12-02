@@ -14,6 +14,9 @@ export const metadata: Metadata = {
     },
     description: "Transform your business with intelligent API agents. Seamlessly integrate 100+ APIs into your LLM applications with plug-and-play simplicity. Enhance efficiency and automation effortlessly.",
     keywords: [
+        "V Automate",
+        "v automate",
+        "vautomate",
         "AI automation",
         "API integration",
         "LLM applications",
