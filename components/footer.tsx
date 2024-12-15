@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CircleDot, MapPin, Mail, Phone, Circle } from "lucide-react";
+import { CircleDot, MapPin, Mail, Phone, Circle } from 'lucide-react';
 import Link from "next/link";
 
 const locations = [
@@ -20,7 +20,6 @@ const locations = [
 export const FooterSection = () => {
     return (
         <footer className="bg-black text-white relative overflow-hidden">
-
             {/* Technical Labels */}
             <div className="absolute left-8 top-8 flex items-center gap-2 text-xs tracking-[0.2em] text-neutral-400">
                 <Circle size={4} className="text-red-500" />
@@ -95,7 +94,22 @@ export const FooterSection = () => {
                     </div>
                 </div>
             </div>
+
+            {/* Large Company Name with Glass Gradient Effect */}
+            <div className="relative w-full overflow-hidden h-32 mt-8">
+                <div 
+                    className="absolute inset-0 flex items-center justify-center text-[150px] font-bold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-red-500/30 via-white/10 to-white/0"
+                    style={{
+                        transform: 'translateY(20%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                    }}
+                >
+                    VAUTOMATE
+                </div>
+            </div>
         </footer>
     );
 };
+
 
