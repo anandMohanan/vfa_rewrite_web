@@ -4,6 +4,7 @@ import FAQ from "@/components/faq";
 import Hero from "@/components/hero";
 import { KeyFeatureComponent } from "@/components/key-features";
 import { ProblemSection } from "@/components/problem";
+import SchemaOrg from "@/components/schema-org";
 import { Metadata } from "next";
 import Head from "next/head";
 
@@ -12,11 +13,14 @@ export const metadata: Metadata = {
         default: "V Automate | Simplify Agentic API Integration",
         template: "%s | V Automate - AI-Powered Business Automation"
     },
-    description: "Transform your business with intelligent API agents. Seamlessly integrate 100+ APIs into your LLM applications with plug-and-play simplicity. Enhance efficiency and automation effortlessly.",
+    description: "V Automate (vautomate.ai) helps transform your business with intelligent API agents. Seamlessly integrate 100+ APIs into your LLM applications with plug-and-play simplicity. Enhance efficiency and automation effortlessly.",
     keywords: [
         "V Automate",
         "v automate",
+        "v-automate",
         "vautomate",
+        "vautomate ai",
+        "v automate ai",
         "AI automation",
         "API integration",
         "LLM applications",
@@ -102,6 +106,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <>
+            <SchemaOrg />
             <main className="bg-[#f5f5f5] text-black relative overflow-hidden">
                 <div className="h-1 w-full bg-gradient-to-r from-red-500 via-neutral-200 to-neutral-300" />
                 <Hero />
