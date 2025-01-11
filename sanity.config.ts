@@ -6,12 +6,8 @@ import { structureTool } from 'sanity/structure'
 import { codeInput } from '@sanity/code-input'
 import { apiVersion, dataset, projectId } from './sanity/env'
 import { schema } from './sanity/schema' // We'll create this
-import { media } from 'sanity-plugin-media'
-import { muxInput } from 'sanity-plugin-mux-input'
 import { markdownSchema } from 'sanity-plugin-markdown'
 import { table } from '@sanity/table'
-import { colorInput } from '@sanity/color-input'
-import { iconPicker } from 'sanity-plugin-icon-picker'
 
 
 const themeConfig = {
@@ -62,15 +58,8 @@ export default defineConfig({
         structureTool(),
         visionTool({ defaultApiVersion: apiVersion }),
         codeInput(),
-        media(),
-        muxInput({
-            mp4_support: 'standard'
-        }),
         markdownSchema(),
         table(),
-        colorInput(),
-        iconPicker(),
-
     ],
     theme: themeConfig
 

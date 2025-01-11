@@ -17,15 +17,31 @@ export async function getPosts() {
       excerpt,
       category,
       publishedAt,
-      mainImage,
-      "readingTime": round(length(pt::text(body)) / 5 / 180)
+      mainImage {
+        ...,
+        "alt": alt,
+        "caption": caption
+      },
+      authors[]{
+        name,
+        role,
+        github
+      },
+      tags,
+      techStack[]{
+        tech,
+        version
+      },
+      status,
+      readingTime,
+      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180)
     }
   `);
 }
 
 // Helper function to fetch a single post
 export async function getPost(slug: string) {
-  return await client.fetch(`{
+    return await client.fetch(`{
     "post": *[_type == "post" && slug.current == $slug][0] {
       _id,
       title,
@@ -33,8 +49,27 @@ export async function getPost(slug: string) {
       body,
       category,
       publishedAt,
-      mainImage,
-      "readingTime": round(length(pt::text(body)) / 5 / 180)
+      mainImage {
+        ...,
+        "alt": alt,
+        "caption": caption
+      },
+      authors[]{
+        name,
+        role,
+        github
+      },
+      tags,
+      techStack[]{
+        tech,
+        version
+      },
+      githubRepo,
+      prerequisites,
+      status,
+      readingTime,
+      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180),
+      seo
     },
     "relatedPosts": *[_type == "post" && slug.current != $slug && category == ^.category][0...3] {
       _id,
@@ -43,7 +78,12 @@ export async function getPost(slug: string) {
       excerpt,
       category,
       publishedAt,
-      "readingTime": round(length(pt::text(body)) / 5 / 180)
+      mainImage {
+        ...,
+        "alt": alt
+      },
+      readingTime,
+      "estimatedReadingTime": round(length(pt::text(body)) / 5 / 180)
     }
   }`, { slug });
 }

@@ -51,19 +51,17 @@ export const Navbar = () => {
                         </span>
                         <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                     </Link>
-                    {["FEATURES", "USECASES", "FAQ"].map((item, index) => (
-                        <Link
-                            key={item}
-                            href={`/#${item.toLowerCase()}`}
-                            className="group relative hover:text-red-500 transition-colors duration-300 p-2"
-                        >
-                            <span className="relative z-10">
-                                {index >= 0 && <span className="text-red-500 mr-2">/</span>}
-                                {item}
-                            </span>
-                            <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                        </Link>
-                    ))}
+                    <Link
+                        key={"blog"}
+                        href={`/blog`}
+                        className="group relative hover:text-red-500 transition-colors duration-300 p-2"
+                    >
+                        <span className="relative z-10">
+                            {2 >= 0 && <span className="text-red-500 mr-2">/</span>}
+                            Blog
+                        </span>
+                        <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                    </Link>
 
                     <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}
 
@@ -102,19 +100,17 @@ export const Navbar = () => {
                     </span>
                     <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
                 </Link>
-                {["FEATURES", "USECASES", "FAQ"].map((item, index) => (
-                    <Link
-                        key={item}
-                        href={`/#${item.toLowerCase()}`}
-                        className="group relative hover:text-red-500 transition-colors duration-300"
-                    >
-                        <span className="relative z-10">
-                            {index >= 0 && <span className="text-red-500 mr-2">/</span>}
-                            {item}
-                        </span>
-                        <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-                    </Link>
-                ))}
+                <Link
+                    key={"blog"}
+                    href={`/blog`}
+                    className="group relative hover:text-red-500 transition-colors duration-300"
+                >
+                    <span className="relative z-10">
+                        {2 >= 0 && <span className="text-red-500 mr-2">/</span>}
+                        Blog
+                    </span>
+                    <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                </Link>
                 <Link href={"#contact"} className={cx('transition-colors flex items-center gap-2 group hover:bg-black hover:text-white px-4 py-1')}
                     onClick={() => {
                         posthog.capture("clicked nav join waitlist")
