@@ -1,8 +1,7 @@
-
 import { TechLabel } from '@/components/ui/tech-label';
-import { Check, Clock } from 'lucide-react';
+import { Check, Clock, ArrowRight } from 'lucide-react';
 import Link from "next/link";
-import posthog from "posthog-js";
+import { Button } from "@/components/ui/button";
 
 export default function Pricing() {
     return (
@@ -36,74 +35,139 @@ export default function Pricing() {
                         <span className="text-red-500" aria-hidden="true">*</span>
                     </header>
 
-                    <h2 className="text-4xl font-bold mb-8 tracking-tighter">Launch Pricing</h2>
+                    <h2 className="text-4xl font-bold mb-8 tracking-tighter">Simple, Transparent Pricing</h2>
                     <p className="text-lg text-neutral-600 mb-16 max-w-2xl">
-                        Get early access to our platform with our special launch pricing. More tiers coming soon.
+                        Choose the plan that best fits your needs. All plans include basic features with different usage limits.
                     </p>
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {/* Early Access Plan */}
+                        {/* Hobby Plan */}
                         <div className="relative bg-white p-8 border border-black group hover:border-red-500 transition-colors">
                             <div className="absolute -top-3 -right-3 w-6 h-6 bg-red-500 hidden group-hover:block" />
                             <div className="mb-4">
-                                <span className="inline-block px-3 py-1 bg-red-500 text-white text-xs tracking-wide mb-2">
-                                    EARLY ACCESS
+                                <span className="inline-block px-3 py-1 bg-neutral-200 text-neutral-800 text-xs tracking-wide mb-2">
+                                    HOBBY
                                 </span>
-                                <h3 className="text-xl font-bold">Launch Plan</h3>
+                                <h3 className="text-xl font-bold">Free Plan</h3>
                             </div>
                             <div className="text-3xl font-bold mb-8">
-                                $0.1
+                                $0
                                 <span className="text-sm font-normal text-neutral-500 block">
-                                    per task (20,000 calls)
+                                    forever free
                                 </span>
                             </div>
                             <ul className="space-y-4 mb-8">
                                 <li className="flex items-center gap-2">
                                     <Check size={16} className="text-red-500" />
-                                    <span>20,000 API calls included</span>
+                                    <span>200 agent interactions/month</span>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <Check size={16} className="text-red-500" />
-                                    <span>All API agents</span>
+                                    <span>1 agent included</span>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <Check size={16} className="text-red-500" />
-                                    <span>Priority support</span>
+                                    <span>Basic analytics</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>Community support</span>
+                                </li>
+                            </ul>
+                            <Button className="w-full" variant="outline">
+                                Get Started Free
+                            </Button>
+                        </div>
+
+                        {/* Pro Plan */}
+                        <div className="relative bg-white p-8 border-2 border-black group hover:border-red-500 transition-colors">
+                            <div className="absolute -top-3 -right-3 w-6 h-6 bg-red-500 hidden group-hover:block" />
+                            <div className="absolute -top-2.5 -right-2.5 px-3 py-1 bg-red-500 text-white text-xs">
+                                MOST POPULAR
+                            </div>
+                            <div className="mb-4">
+                                <span className="inline-block px-3 py-1 bg-black text-white text-xs tracking-wide mb-2">
+                                    PRO
+                                </span>
+                                <h3 className="text-xl font-bold">Professional</h3>
+                            </div>
+                            <div className="text-3xl font-bold mb-8">
+                                $200
+                                <span className="text-sm font-normal text-neutral-500 block">
+                                    per month
+                                </span>
+                            </div>
+                            <ul className="space-y-4 mb-8">
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>2,000 agent interactions included</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>5 agents included</span>
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <Check size={16} className="text-red-500" />
                                     <span>Advanced analytics</span>
                                 </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>Priority email support</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>API access</span>
+                                </li>
                             </ul>
+                            <Button className="w-full">
+                                Subscribe Now
+                            </Button>
                         </div>
 
-                        {/* Coming Soon Plans */}
-                        {[
-                            { title: "Team", description: "For growing teams" },
-                            { title: "Enterprise", description: "For large organizations" }
-                        ].map((plan) => (
-                            <div key={plan.title} className="relative bg-white/50 p-8 border border-black/20 group">
-                                <div className="absolute -top-3 -right-3 w-6 h-6 bg-neutral-200" />
-                                <div className="mb-4">
-                                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-neutral-200 text-neutral-600 text-xs tracking-wide mb-2">
-                                        <Clock size={12} />
-                                        COMING SOON
-                                    </span>
-                                    <h3 className="text-xl font-bold text-neutral-400">{plan.title}</h3>
-                                </div>
-                                <div className="text-3xl font-bold mb-8 text-neutral-300">
-                                    --
-                                    <span className="text-sm font-normal text-neutral-400 block">
-                                        {plan.description}
-                                    </span>
-                                </div>
-                                <div className="h-64 flex items-center justify-center">
-                                    <div className="text-neutral-400 text-sm tracking-wide">
-                                        More details coming soon
-                                    </div>
-                                </div>
+                        {/* Enterprise Plan */}
+                        <div className="relative bg-white p-8 border border-black group hover:border-red-500 transition-colors">
+                            <div className="absolute -top-3 -right-3 w-6 h-6 bg-red-500 hidden group-hover:block" />
+                            <div className="mb-4">
+                                <span className="inline-block px-3 py-1 bg-neutral-800 text-white text-xs tracking-wide mb-2">
+                                    ENTERPRISE
+                                </span>
+                                <h3 className="text-xl font-bold">Custom</h3>
                             </div>
-                        ))}
+                            <div className="text-3xl font-bold mb-8">
+                                Custom
+                                <span className="text-sm font-normal text-neutral-500 block">
+                                    tailored to your needs
+                                </span>
+                            </div>
+                            <ul className="space-y-4 mb-8">
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>Unlimited interactions</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>Unlimited agents</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>Custom integrations</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>24/7 dedicated support</span>
+                                </li>
+                                <li className="flex items-center gap-2">
+                                    <Check size={16} className="text-red-500" />
+                                    <span>SLA guarantee</span>
+                                </li>
+                            </ul>
+                            <Button variant="outline" className="w-full group">
+                                <span className="flex items-center gap-2">
+                                    Book a Meeting
+                                    <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                                </span>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
