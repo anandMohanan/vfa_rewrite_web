@@ -40,10 +40,21 @@ export const Navbar = () => {
                 </button>
 
                 <nav className="md:flex items-center space-x-8 font-mono text-xs tracking-[0.2em] hidden"> {/* Updated to always be visible on desktop */}
+                    <Link
+                        key={"pricing"}
+                        href={`/pricing`}
+                        className="group relative hover:text-red-500 transition-colors duration-300 p-2"
+                    >
+                        <span className="relative z-10">
+                            {2 >= 0 && <span className="text-red-500 mr-2">/</span>}
+                            Pricing
+                        </span>
+                        <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                    </Link>
                     {["FEATURES", "USECASES", "FAQ"].map((item, index) => (
                         <Link
                             key={item}
-                            href={`#${item.toLowerCase()}`}
+                            href={`/#${item.toLowerCase()}`}
                             className="group relative hover:text-red-500 transition-colors duration-300 p-2"
                         >
                             <span className="relative z-10">
@@ -80,10 +91,21 @@ export const Navbar = () => {
         border-b border-neutral-200 
         font-mono text-xs tracking-[0.2em]
       `}>
+                <Link
+                    key={"pricing"}
+                    href={`/pricing`}
+                    className="group relative hover:text-red-500 transition-colors duration-300"
+                >
+                    <span className="relative z-10">
+                        {2 >= 0 && <span className="text-red-500 mr-2">/</span>}
+                        Pricing
+                    </span>
+                    <span className="absolute -left-2 top-1/2 w-1 h-1 bg-red-500 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                </Link>
                 {["FEATURES", "USECASES", "FAQ"].map((item, index) => (
                     <Link
                         key={item}
-                        href={`#${item.toLowerCase()}`}
+                        href={`/#${item.toLowerCase()}`}
                         className="group relative hover:text-red-500 transition-colors duration-300"
                     >
                         <span className="relative z-10">
