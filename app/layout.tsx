@@ -44,11 +44,9 @@ export default function RootLayout({
                 <a href="#main-content" className="sr-only focus:not-sr-only">
                     Skip to main content
                 </a>
-                <Navbar />
                 <main id="main-content">
                     {children}
                 </main>
-                <FooterSection />
             </body>
             </PosthogProvider>
         </html>

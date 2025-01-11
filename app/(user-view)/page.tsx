@@ -106,7 +106,7 @@ export const metadata: Metadata = {
 export default function Home() {
     return (
         <>
-            <SchemaOrg />
+        <SchemaOrg />
             <main className="bg-[#f5f5f5] text-black relative overflow-hidden">
                 <div className="h-1 w-full bg-gradient-to-r from-red-500 via-neutral-200 to-neutral-300" />
                 <Hero />
