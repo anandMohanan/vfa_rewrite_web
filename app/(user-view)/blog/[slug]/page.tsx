@@ -21,20 +21,19 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Metadata, ResolvingMetadata } from 'next'
+
+type Props = {
+    params: { slug: string }
+}
+
 
 const components = {
     types: {
         block: ({ value }) => {
-            // We're getting undefined children because we should use value.children directly
-            // Let's log the complete value to understand what we're working with
-            console.log('Block value:', JSON.stringify(value, null, 2));
-
-            // First, let's extract the text content from the block's children
             const text = value.children
                 .map(child => child.text)
                 .join('');
-
-            // Handle lists with the extracted text
             if (value.listItem) {
                 if (value.level > 1) {
                     return <li className="ml-8">{text}</li>;
@@ -42,7 +41,6 @@ const components = {
                 return <li className={value.listItem === 'bullet' ? 'ml-6' : ''}>{text}</li>;
             }
 
-            // Define our styles for different block types
             const styles = {
                 h1: "scroll-m-20 text-4xl font-bold tracking-tight mt-12 mb-6",
                 h2: "scroll-m-20 text-3xl font-bold tracking-tight mt-12 mb-6",
@@ -52,10 +50,8 @@ const components = {
                 normal: "leading-7 [&:not(:first-child)]:mt-6"
             };
 
-            // Get the style and ensure we have a default
             const style = styles[value.style] || styles.normal;
 
-            // Create elements based on style with the extracted text
             switch (value.style) {
                 case 'h1':
                     return <h1 className={style}>{text}</h1>;
@@ -68,10 +64,8 @@ const components = {
                 case 'blockquote':
                     return <blockquote className={style}>{text}</blockquote>;
                 default:
-                    // Check if any child has marks for special formatting
                     const hasMarks = value.children.some(child => child.marks?.length > 0);
                     if (hasMarks) {
-                        // If we have marks, we need to render each child separately to maintain formatting
                         return (
                             <p className={style}>
                                 {value.children.map((child, index) => {
@@ -90,9 +84,7 @@ const components = {
             }
         },
         code: ({ value }) => {
-            // Log code block value to debug
-            console.log('Code block:', JSON.stringify(value, null, 2));
-            
+
             return (
                 <div className="my-6 relative group">
                     <div className="absolute -inset-y-4 -inset-x-4 z-0 bg-neutral-50 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg" />
@@ -152,10 +144,40 @@ const components = {
     }
 };
 
+export async function generateMetadata(
+    { params }: Props,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const { slug } = params
+    const { post } = await getPost(slug)
+
+    // Get the parent metadata (optional but recommended)
+    const previousImages = (await parent).openGraph?.images || []
+
+    return {
+        title: `${post.title} | Vautomate Blog`,
+        description: post.excerpt,
+        authors: post.authors?.map(author => ({ name: author.name })),
+        openGraph: {
+            title: post.title,
+            description: post.excerpt,
+            type: 'article',
+            publishedTime: post.publishedAt,
+            authors: post.authors?.map(author => author.name),
+            images: [`/blog/${slug}/opengraph-image`],
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: post.title,
+            description: post.excerpt,
+            images: [`/blog/${slug}/opengraph-image`],
+        },
+    }
+}
+
 export default async function BlogPost({ params }) {
     const { slug } = await params;
     const { post, relatedPosts } = await getPost(slug)
-    console.log(post)
 
     return (
         <article className="min-h-screen pt-32 pb-24 relative bg-[#f5f5f5]">
@@ -296,7 +318,6 @@ export default async function BlogPost({ params }) {
                             value={post.body}
                             components={components}
                             onMissingComponent={(message, options) => {
-                                console.warn('Missing component:', message, options);
                                 return null;
                             }}
                         />
